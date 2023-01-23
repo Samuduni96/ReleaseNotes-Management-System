@@ -4,14 +4,19 @@ if (process.env.NODE_ENV !== 'production'){
 
 const express = require ('express')
 const app = express()
+//const expressLayouts = require('express-ejs-layouts')
+const bodyParser = require('body-parser')
 
 const indexRouter = require('./routes/index')
 const projectRouter = require('./routes/projects')
+const userRouter = require('./routes/users')
 
 app.set('view engine', 'ejs')
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: false}))
 
 app.use('/', indexRouter)
 app.use('/', projectRouter)
+app.use('/', userRouter)
 
 const mongoose = require('mongoose')
 mongoose.set('strictQuery', true)

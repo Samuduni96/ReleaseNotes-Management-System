@@ -1,0 +1,24 @@
+<!-- <a href="/main">Home</a>
+<br>
+<a href="/logout">Logout</a> -->
+<%- include('../layouts/header') %> 
+<h2>
+    Home Page 
+</h2>
+<p>
+    Welcome to the Home Page. <br> All users will directed to this page after logged in.
+</p>
+<h3>Projects:</h3>
+
+<form action="/home" method="GET">
+    <% projects.forEach( project => { %>
+        <div><%= project.name %>
+            <br>
+            <%= project.description %>
+            <br><br>
+        </div>
+    <% }) %>
+</form>
+
+<a href="/new_project">Add New Projects</a>
+

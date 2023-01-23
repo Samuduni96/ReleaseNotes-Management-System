@@ -1,2 +1,25 @@
-<h3>Add New Project</h3>
-Create a page to add new projects here
+<%- include('../layouts/header.ejs') %> 
+<br>
+
+<% if (locals.errorMessage != null) {%> 
+    <%= errorMessage %> 
+<% } %> 
+
+<h2>Add New Project</h2>
+
+<form action="/new_project" method="POST">
+    <div>
+        <label>Project Name: </label>
+        <input type="text" name="name" value="<%= project.name %>">
+    </div>
+    <br>
+    
+    <div>
+        <label>Description: </label>
+        <textarea type="description" name="description" cols="30" rows="10"></textarea>
+    </div>
+
+    <a href="/home">Cancel</a>
+    <button type="submit">Create</button>
+</form>
+

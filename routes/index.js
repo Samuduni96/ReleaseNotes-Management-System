@@ -42,13 +42,18 @@ router.get ('/register', chechNotAuthenticated, (req, res) => {
 })
 
 router.post('/login', passport.authenticate('local', {
-    successRedirect: 'home',
+    successRedirect: 'home', 
     failureRedirect: '/login'
-}), function (req, res) {
+}), (req, res) => {
+    //console.log(req.username)
 })
 
 router.post("/register",(req,res)=>{
-    User.register(new User({username: req.body.username,email:req.body.email}),req.body.password,function(err,user){
+    User.register(new User({
+        username: req.body.username,
+        email:req.body.email
+    }),
+    req.body.password,function(err,user){
         if(err){
             console.log(err);
             res.render("logins/register")

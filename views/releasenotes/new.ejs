@@ -1,0 +1,24 @@
+<%- include('../layouts/header') %> 
+
+<h2>Add New Release Note</h2>
+
+<form action="/releasenote/new" method="POST" enctype="multipart/form-data">
+    <label for="text">Title: </label>
+    <input type="text" id="title" name="title">
+    <br><br>
+    <label for="file">File: </label>
+    <input type="file" id="file" name="file" required>
+    <br><br>
+    <label for="text">Description: </label>
+    <input type="text" id="description" name="description">
+    <br><br>
+    <label for="date">Upload Date: </label>
+    <input type="date" id="createdAt" name="createdAt">
+    <br><br>
+    <button type="submit">Add Release Note</button>
+</form>
+
+<a href="/releasenote">Cancel</a>
+
+
+

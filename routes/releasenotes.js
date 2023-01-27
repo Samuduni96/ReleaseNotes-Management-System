@@ -8,9 +8,9 @@ const ReleaseNote = require('../models/releasenote')
 
 const upload = multer({ dest: 'uploads' })
 
-router.get('/', (req, res) => {
-    res.render('releasenotes/index')
-})
+// router.get('/', (req, res) => {
+//     res.render('releasenotes/index')
+// })
 
 router.get('/new', async (req, res) => {
     // try {
@@ -24,21 +24,22 @@ router.get('/new', async (req, res) => {
     //     })
     // } catch {
     res.render('releasenotes/new')
+    //console.log(req.user)
     // }
 })
 
 router.post('/new', upload.single('file'), async (req, res) => {
     const releasenoteData = {
+        //user : req.user._id,
         title: req.body.title,
         path: req.file.path,
         originalName: req.file.originalname,
         description: req.body.description,
         createdAt: req.body.createdAt,
-        
     }
     const releasenote = await ReleaseNote.create(releasenoteData)
     console.log(releasenote)
-    res.render('releasenotes')
+    res.redirect('/releasenote')
 })
 
 module.exports = router

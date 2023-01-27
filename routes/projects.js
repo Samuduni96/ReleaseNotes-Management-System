@@ -8,9 +8,14 @@ router.get('/home', async (req, res) => {
     try {
         const projects = await Project.find({})
         res.render('users/home', { projects: projects })
+        //console.log(req.user._id)
     } catch {
         res.redirect('/home')
     }
+})
+
+router.get('/userprofile', (req, res, next) => {
+    res.render('users/userprofile')
 })
 
 // New Project Route
@@ -35,5 +40,10 @@ router.post('/new_project', async (req, res) => {
     }
 })
 
+router.get('/:id', (req, res) => {
+    res.render('releasenotes/index')
+})
+
 module.exports = router
+
 

@@ -7,15 +7,18 @@ const LocalStrategy = require("passport-local")
 const router = express.Router()
 const User = require("../models/user")
 
-// router.use(methodOverride('_method'))
-router.use(require("express-session")({
+const session = require("express-session")
+//const MongoStore = require('connect-mongo')(session)
+//MongoStore.create({mongoUrl: process.env.DATABASE_URL})
+router.use(session({
     secret: process.env.SESSION_SECRET, //decode or encode session
-    resave: false,          
-    saveUninitialized: false    
+    resave: true,          
+    saveUninitialized: true,  
+    //store: new MongoStore({mongooseConnection: mongoose.connection})  
 }))
 
-passport.serializeUser(User.serializeUser())       //session encoding
-passport.deserializeUser(User.deserializeUser())   //session decoding
+passport.serializeUser((User.serializeUser()))       //session encoding
+passport.deserializeUser(User.deserializeUser())     //session decoding
 passport.use(new LocalStrategy(User.authenticate()))
 router.use(bodyParser.urlencoded({ extended:true }))
 router.use(passport.initialize())
@@ -31,21 +34,17 @@ router.get('/login', (req, res) => {
     res.render('logins/login')
 })
 
-// Route to the User Profile
-// router.get("/home", (req,res) => {
-//     res.render("users/home")
-// })
-
 // Route to the Register Page
-router.get ('/register', chechNotAuthenticated, (req, res) => {
+router.get('/register', (req, res) => {
     res.render('logins/register')
 })
 
-router.post('/login', passport.authenticate('local', {
-    successRedirect: 'home', 
+router.post('/login', 
+passport.authenticate('local', {
+    successRedirect: 'home',
     failureRedirect: '/login'
 }), (req, res) => {
-    //console.log(req.username)
+    
 })
 
 router.post("/register",(req,res)=>{
@@ -77,11 +76,11 @@ router.get("/logout",(req,res)=>{
 //     res.redirect('/login')
 // }
 
-function chechNotAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-        return res.redirect('/home')
-    }
-    next()
-}
+// function chechNotAuthenticated(req, res, next) {
+//     if (req.isAuthenticated()) {
+//         return res.redirect('/home')
+//     }
+//     next()
+// }
 
 module.exports = router

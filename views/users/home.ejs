@@ -15,9 +15,10 @@
         <div><%= project.name %>
             <br>
             <%= project.description %>
-            <br><br>
         </div>
+        <a href="/<%= project.id %>">View</a>
+        <br><br>
     <% }) %>
 </form>
 
-<a href="/new_project">Add New Projects</a>
+<a href="/new_project">Add New Project</a>

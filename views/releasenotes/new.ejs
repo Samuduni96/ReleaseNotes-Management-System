@@ -1,4 +1,9 @@
 <%- include('../layouts/header') %> 
+<br>
+
+<% if (locals.errorMessage != null) {%> 
+    <%= errorMessage %> 
+<% } %> 
 
 <h2>Add New Release Note</h2>
 

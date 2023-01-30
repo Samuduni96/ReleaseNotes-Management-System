@@ -17,11 +17,11 @@ const ReleaseNote = new mongoose.Schema({
     originalName: {
         type: String,
         required: true
-    // },
-    // user: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     required: true,
-        // ref: 'User'
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
     // },
     // project: {
     //     type: mongoose.Schema.Types.ObjectId,

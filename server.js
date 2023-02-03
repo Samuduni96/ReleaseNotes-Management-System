@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: false}))
 app.use('/', indexRouter)
 app.use('/', projectRouter)
 app.use('/', userRouter)
-app.use('/releasenote', releasenoteRouter)
+app.use('/', releasenoteRouter)
 
 const mongoose = require('mongoose')
 mongoose.set('strictQuery', true)

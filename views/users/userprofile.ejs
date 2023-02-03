@@ -1,4 +1,15 @@
 <%- include('../layouts/header') %>
 
-<h2>User Profile page should be created here</h2>
+<h2>Welcome to your profile <%= user.username %> </h2>
 
+<h3> Releasenots added: </h3>
+
+<% releasenotes.forEach( releasenote => { %>
+    <div><%= releasenote.title %>
+        <br>
+        <%= releasenote.description %>
+        <br>
+        <%= releasenote.CreatedAt.toISOString().split('T')[0] %>
+        <br><br>
+    </div>
+<% }) %>

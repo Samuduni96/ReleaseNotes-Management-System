@@ -1,5 +1,19 @@
 <%- include('../layouts/header') %> 
 
-<h2>this page is for displaying release notes under each project</h2>
+<form action="/rel/<%=project.id%>" method="GET">
+    <h2>Release Notes of <%= project.name %> </h2>
 
-<a href="releasenote/new">Add New Release Note</a>
+    <a href="/rel/<%=project.id%>/new">Add New Release Note</a>
+    <br><br>
+
+    <% releasenotes.forEach( releasenote => { %>
+        <div><%= releasenote.title %>
+            <br>
+            <%= releasenote.description %>
+            <br>
+            <%= releasenote.CreatedAt.toISOString().split('T')[0] %>
+            <br><br>
+        </div>
+    <% }) %>
+</form>
+

@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Project = require('../models/project')
+const ReleaseNote = require('../models/releasenote')
 
 
 // Show All Projects Route
@@ -14,8 +15,12 @@ router.get('/home', async (req, res) => {
     }
 })
 
-router.get('/userprofile', (req, res, next) => {
-    res.render('users/userprofile')
+router.get('/userprofile', async (req, res, next) => {
+    const user = req.user
+    const releasenotes = await ReleaseNote.find({user: user.id})
+    //console.log(user)
+    //console.log(releasenotes)
+    res.render('users/userprofile', {user: user, releasenotes: releasenotes})
 })
 
 // New Project Route
@@ -38,10 +43,6 @@ router.post('/new_project', async (req, res) => {
             errorMessage: 'Error Creating the Project'
         })
     }
-})
-
-router.get('/:id', (req, res) => {
-    res.render('releasenotes/index')
 })
 
 module.exports = router

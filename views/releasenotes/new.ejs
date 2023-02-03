@@ -7,7 +7,7 @@
 
 <h2>Add New Release Note</h2>
 
-<form action="/releasenote/new" method="POST" enctype="multipart/form-data">
+<form action="/rel/<%=project.id%>/new" method="POST" enctype="multipart/form-data">
     <label for="text">Title: </label>
     <input type="text" id="title" name="title">
     <br><br>
@@ -23,7 +23,7 @@
     <button type="submit">Add Release Note</button>
 </form>
 
-<a href="/releasenote">Cancel</a>
+<a href="/rel/<%=project.id%>">Cancel</a>
 
 
 

@@ -1,14 +1,15 @@
-<!-- <a href="/main">Home</a>
-<br>
-<a href="/logout">Logout</a> -->
 <%- include('../layouts/header') %> 
 <h2>
     Home Page 
 </h2>
 <p>
-    Welcome to the Home Page. <br> All users will directed to this page after logged in.
+    Welcome to the Home Page.
 </p>
 <h3>Projects:</h3>
+
+<div>
+    <a href="/new_project">Add New Project</a><br><br>
+</div>
 
 <form action="/home" method="GET">
     <% projects.forEach( project => { %>
@@ -21,4 +22,4 @@
     <% }) %>
 </form>
 
-<a href="/new_project">Add New Project</a>
+

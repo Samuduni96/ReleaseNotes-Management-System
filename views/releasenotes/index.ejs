@@ -9,9 +9,13 @@
     <% releasenotes.forEach( releasenote => { %>
         <div><%= releasenote.title %>
             <br>
+            <%= releasenote.releaseVersion %>
+            <br>
             <%= releasenote.description %>
             <br>
             <%= releasenote.CreatedAt.toISOString().split('T')[0] %>
+            <br>
+            <a href="/rel/<%=project.id%>/<%=releasenote.id%>">Download</a>
             <br><br>
         </div>
     <% }) %>

@@ -27,6 +27,10 @@ const ReleaseNote = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Project'
+    },
+    releaseVersion: {
+        type: String,
+        required: true
     }
 })
 

@@ -18,8 +18,6 @@ router.get('/home', async (req, res) => {
 router.get('/userprofile', async (req, res, next) => {
     const user = req.user
     const releasenotes = await ReleaseNote.find({user: user.id})
-    //console.log(user)
-    //console.log(releasenotes)
     res.render('users/userprofile', {user: user, releasenotes: releasenotes})
 })
 
@@ -43,6 +41,12 @@ router.post('/new_project', async (req, res) => {
             errorMessage: 'Error Creating the Project'
         })
     }
+})
+
+router.get('/userprofile/:id', async (req, res) => {
+    const releasenotes = await ReleaseNote.findById(req.params.id)
+    await releasenotes.save()
+    res.download(releasenotes.path, releasenotes.originalName)
 })
 
 module.exports = router

@@ -1,14 +1,13 @@
 const multer = require('multer')
 const express = require('express')
 const router = express.Router()
-//const fs = require('fs')
-//const path = require('path')
-//const User = require('../models/user')
+const fs = require('fs')
+//const flash = require('connect-flash')
 const Project = require('../models/project')
 const ReleaseNote = require('../models/releasenote')
-const project = require('../models/project')
 
 const upload = multer({ dest: 'uploads' })
+//router.use(flash())
 
 router.get('/rel/:id', async (req, res) => {
     const project =  await Project.findById(req.params.id)
@@ -17,12 +16,8 @@ router.get('/rel/:id', async (req, res) => {
 })
 
 router.get('/rel/:id/new', async (req, res) => {
-    // try {
         const project =  await Project.findById(req.params.id)
         res.render('releasenotes/new', {project: project})
-    // } catch {
-        // res.render(`releasenote/${project.id}/new`, { project: project })
-    //}
 })
 
 router.post('/rel/:id/new', upload.single('file'), async (req, res) => {
@@ -38,14 +33,12 @@ router.post('/rel/:id/new', upload.single('file'), async (req, res) => {
     }
     try {
         const releasenote = await ReleaseNote.create(releasenoteData)
-        res.redirect('/home')
+        res.redirect(`/rel/${releasenoteData.project.id}`)
     } catch {
         if (releasenoteData.path != null) {
-            //removeFile(releasenoteData.path)
-            res.redirect(`/rel/${project.id}/new`, {
-                errorMessage: 'Error Creating the Release Note'
-            })
-        }
+            removeFile(releasenoteData.path)
+            res.redirect(`/rel/${releasenoteData.project.id}/new`)       
+        }       
     }
 })
 
@@ -55,10 +48,11 @@ router.get('/rel/:id/:id', async (req, res) => {
     res.download(releasenotes.path, releasenotes.originalName)
 })
 
-// function removeFile(path) {
-//     fs.unlink(path.join(path.join('uploads', ReleaseNote.upload), path), err => {
-//         if (err) console.error(err)
-//     })
-// }
+function removeFile(path) {
+    fs.unlink(path, function(err) {
+        if (err) throw err
+    }) 
+    
+}
 
 module.exports = router

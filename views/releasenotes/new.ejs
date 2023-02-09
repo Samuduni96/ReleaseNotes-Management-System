@@ -1,6 +1,11 @@
 <%- include('../layouts/header') %> 
 <br>
 
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+</head>
+
 <% if (locals.error != null) {%> 
     <%= error %> 
 <% } %> 
@@ -18,7 +23,7 @@
     <input type="text" id="releaseVersion" name="releaseVersion">
     <br><br>
     <label for="text">Description: </label>
-    <textarea type="text" id="description" name="description"></textarea>
+    <textarea id="file-input" type="text" id="description" name="description"></textarea>
     <br><br>
     <label for="date">Upload Date: </label>
     <input type="date" id="createdAt" name="createdAt">
@@ -27,6 +32,10 @@
 </form>
 
 <a href="/rel/<%=project.id%>">Cancel</a>
+
+<script>
+    var simplemde = new SimpleMDE({ element: document.getElementById("file-input") });
+</script>
 
 
 

@@ -11,8 +11,8 @@
             <br>
             <%= releasenote.releaseVersion %>
             <br>
-            <%= releasenote.description %>
-            <br>
+            <div id="file-input"><%= releasenote.description %>
+            </div>
             <%= releasenote.CreatedAt.toISOString().split('T')[0] %>
             <br>
             <a href="/rel/<%=project.id%>/<%=releasenote.id%>">Download</a>
@@ -21,3 +21,6 @@
     <% }) %>
 </form>
 
+<script>
+    var simplemde = new SimpleMDE({ element: document.getElementById("file-input") });
+</script>

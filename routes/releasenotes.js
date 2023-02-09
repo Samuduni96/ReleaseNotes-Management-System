@@ -48,6 +48,20 @@ router.get('/rel/:id/:id', async (req, res) => {
     res.download(releasenotes.path, releasenotes.originalName)
 })
 
+router.delete('/userprofile/:id', async (req, res) => {
+    //console.log(req.params.id)
+    let releasenotes
+    try {
+        releasenotes = await ReleaseNote.findById(req.params.id)
+        await releasenotes.remove()
+        removeFile(releasenotes.path)
+        res.redirect('/userprofile')
+    } catch {
+        res.redirect ('/home')
+    }
+    //res.send( "delete route connected " + req.params.id)
+})
+
 function removeFile(path) {
     fs.unlink(path, function(err) {
         if (err) throw err

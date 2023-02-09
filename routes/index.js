@@ -2,6 +2,7 @@ const express = require('express')
 const passport = require('passport')
 const bodyParser = require('body-parser')
 const LocalStrategy = require("passport-local")
+const flash = require("connect-flash")
 // const methodOverride = require('method-override')
 // const passportLocalMongoose = require("passport-local-mongoose") 
 const router = express.Router()
@@ -16,6 +17,7 @@ router.use(session({
     saveUninitialized: true,  
     //store: new MongoStore({mongooseConnection: mongoose.connection})  
 }))
+router.use(flash())
 
 passport.serializeUser((User.serializeUser()))       //session encoding
 passport.deserializeUser(User.deserializeUser())     //session decoding
@@ -31,7 +33,7 @@ router.get('/', (req, res) => {
 
 // Route to the LogIn Page
 router.get('/login', (req, res) => {
-    res.render('logins/login')
+    res.render('logins/login', {message: req.flash('error')})
 })
 
 // Route to the Register Page
@@ -39,10 +41,10 @@ router.get('/register', (req, res) => {
     res.render('logins/register')
 })
 
-router.post('/login', 
-passport.authenticate('local', {
-    successRedirect: 'home',
-    failureRedirect: '/login'
+router.post('/login', passport.authenticate('local', {
+    successRedirect: '/home',
+    failureRedirect: '/login',
+    failureFlash: true
 }), (req, res) => {
     
 })
@@ -64,9 +66,11 @@ router.post("/register",(req,res)=>{
 })
 
 // Route to Log Out
-router.get("/logout",(req,res)=>{
-    //req.logOut()
-    res.redirect("/")
+router.get("/logout", (req, res) => {
+    req.logout(req.user, err => {
+      if(err) return next(err)
+      res.redirect("/")
+    })
 })
 
 // function chechAuthenticated(req, res, next) {
@@ -84,3 +88,4 @@ router.get("/logout",(req,res)=>{
 // }
 
 module.exports = router
+

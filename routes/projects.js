@@ -5,7 +5,7 @@ const ReleaseNote = require('../models/releasenote')
 
 
 // Show All Projects Route
-router.get('/home', async (req, res) => {
+router.get('/home', chechAuthenticated, async (req, res) => {
     try {
         const projects = await Project.find({})
         res.render('users/home', { projects: projects })
@@ -48,6 +48,13 @@ router.get('/userprofile/:id', async (req, res) => {
     await releasenotes.save()
     res.download(releasenotes.path, releasenotes.originalName)
 })
+
+function chechAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next()
+    }
+    res.redirect('/login')
+}
 
 module.exports = router
 

@@ -1,5 +1,9 @@
 <h2>Log in to Your Account</h2>
 
+<% if (message != null) { %>
+  <%= message %>
+<% } %>   
+<br><br>
 <form action="/login" method="POST">
   <div>
   <label for="username">User Name</label>

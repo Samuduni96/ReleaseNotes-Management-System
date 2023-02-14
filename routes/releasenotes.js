@@ -2,6 +2,7 @@ const multer = require('multer')
 const express = require('express')
 const router = express.Router()
 const fs = require('fs')
+
 //const flash = require('connect-flash')
 const Project = require('../models/project')
 const ReleaseNote = require('../models/releasenote')
@@ -16,8 +17,8 @@ router.get('/rel/:id', async (req, res) => {
 })
 
 router.get('/rel/:id/new', async (req, res) => {
-        const project =  await Project.findById(req.params.id)
-        res.render('releasenotes/new', {project: project})
+    const project =  await Project.findById(req.params.id)
+    res.render('releasenotes/new', {project: project})
 })
 
 router.post('/rel/:id/new', upload.single('file'), async (req, res) => {
@@ -49,7 +50,6 @@ router.get('/rel/:id/:id', async (req, res) => {
 })
 
 router.delete('/userprofile/:id', async (req, res) => {
-    //console.log(req.params.id)
     let releasenotes
     try {
         releasenotes = await ReleaseNote.findById(req.params.id)
@@ -59,14 +59,12 @@ router.delete('/userprofile/:id', async (req, res) => {
     } catch {
         res.redirect ('/home')
     }
-    //res.send( "delete route connected " + req.params.id)
 })
 
 function removeFile(path) {
     fs.unlink(path, function(err) {
         if (err) throw err
     }) 
-    
 }
 
 module.exports = router

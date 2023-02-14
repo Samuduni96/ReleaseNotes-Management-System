@@ -57,11 +57,11 @@ router.post("/register",(req,res)=>{
     req.body.password,function(err,user){
         if(err){
             console.log(err);
-            res.render("logins/register")
+            res.render("logins/register", {errorMessage: 'Fill in all the fields before submiting'})
         }
-    passport.authenticate("local")(req,res,function(){
-        res.redirect("/login")
-    })    
+        passport.authenticate("local")(req,res,function(){
+            res.redirect("/login")
+        })    
     })
 })
 

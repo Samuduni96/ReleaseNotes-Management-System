@@ -1,5 +1,10 @@
 <%- include('../layouts/header') %> 
 
+<!-- <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+</head> -->
+
 <form action="/rel/<%=project.id%>" method="GET">
     <h2>Release Notes of <%= project.name %> </h2>
 
@@ -11,7 +16,11 @@
             <br>
             <%= releasenote.releaseVersion %>
             <br>
-            <div id="file-input"><%= releasenote.description %>
+            <script id="file-input">
+                simplemde.value()
+            </script>
+            <div>
+                <%= releasenote.description %>
             </div>
             <%= releasenote.CreatedAt.toISOString().split('T')[0] %>
             <br>
@@ -21,6 +30,6 @@
     <% }) %>
 </form>
 
-<script>
+<!-- <script>
     var simplemde = new SimpleMDE({ element: document.getElementById("file-input") });
-</script>
+</script> -->

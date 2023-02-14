@@ -19,12 +19,12 @@
     <label for="file">File: </label>
     <input type="file" id="file" name="file" required>
     <br><br>
-    <label for="text">Releae Version: </label>
+    <label for="text">Release Version: </label>
     <input type="text" id="releaseVersion" name="releaseVersion">
     <br><br>
     <label for="text">Description: </label>
-    <textarea id="file-input" type="text" id="description" name="description"></textarea>
-    <br><br>
+    <textarea type="text" id="file-input" name="description"></textarea>
+    <br>
     <label for="date">Upload Date: </label>
     <input type="date" id="createdAt" name="createdAt">
     <br><br>
@@ -36,6 +36,7 @@
 <script>
     var simplemde = new SimpleMDE({ element: document.getElementById("file-input") });
 </script>
+
 
 
 

@@ -1,27 +1,53 @@
-<%- include('../layouts/header') %> 
+<%- include('../layouts/header') %>
 
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link href="/styles2.css" rel="stylesheet">
+</head>
 
-<section class="py-5">
-    <h2>
-        Welcome to the Home Page 
-    </h2>
-
-    <h3>Projects:</h3>
-
-    <div>
-        <a href="/new_project">Add New Project</a><br><br>
-    </div>
-
-    <form action="/home" method="GET">
-        <% projects.forEach( project => { %>
-            <div><%= project.name %>
-                <br>
-                <%= project.description %>
+<body>
+    <section class="page-section">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-lg-8 col-xl-6 text-center">
+                    <h2 class="mt-0">Home Page</h2>
+                    <hr class="divider" />
+                </div>
             </div>
-            <a href="/rel/<%= project.id %>">View</a>
-            <br><br>
-        <% }) %>
-    </form>
-</section>
+        </div>
 
+        <div class="form-row text-center">
+          <div class="col-12">
+            <a href="/new_project" class="btn btn-primary">Add New Project</a>
+          </div>
+        </div>
+    </section>
 
+    
+
+    <section id="services" class="services">
+        <form class="container" action="/home" method="GET">
+                
+          <div class="row gy-4">
+            <% projects.forEach( project=> { %>
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+              <div class="service-box orange">
+                <i class="bi bi-chat-left-heart-fill icon"></i>
+                <h3><%= project.name %></h3>
+                <p><%= project.description %></p>
+                <a href="/rel/<%= project.id %>" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+  
+            <% }) %>
+          </div>
+      </section>
+
+      <!-- <script>
+        var color = ["blue","orange","green","red","purple","pink"];
+        var elements = document.q("change");
+        for(var i=0; i<elements.length; i++)
+            //elements.item(i).style.read-more = color[i]
+            elements.item(i).style.color = "#2db6fa";
+      </script> -->
+</body>

@@ -1,37 +1,66 @@
 <%- include('../layouts/header') %> 
-<br>
 
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 </head>
 
-<% if (locals.error != null) {%> 
-    <%= error %> 
-<% } %> 
 
-<h2>Add New Release Note</h2>
+<section class="page-section" id="contact">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-8 col-xl-6 text-center">
+                <h2 class="mt-0">Add New Release Note</h2>
+                <hr class="divider" />
+            </div>
+        </div>
+        <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+            <div class="col-lg-6">
+        
+                <form action="/rel/<%=project.id%>/new" method="POST" enctype="multipart/form-data" >
+                    <!-- Title input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="title" name="title" type="text" placeholder="Enter the title..." />
+                        <label for="text">Title</label>
+                    </div>
+                    <!-- File input-->
+                    <div class="mb-3">
+                        <input class="form-control" id="file" name="file" type="file" placeholder="File"  />
+                        <label class="form-label" for="file"></label>
+                    </div>
+                    <!-- Release Version-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="releaseVersion" type="text" name="releaseVersion" placeholder="Release Version" />
+                        <label for="text">Release Version</label>
+                    </div>
+                    <!-- Uploaded Date-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="createdAt" type="date" name="createdAt" />
+                        <label for="date">Upload Date</label>
+                    </div>
+                    <!-- Description input-->
+                    <div class="mb-3">
+                        <textarea class="form-control h-25" id="file-input" name="description" type="text" placeholder="Description"></textarea>
+                        <label for="text"></label>
+                    </div>
 
-<form action="/rel/<%=project.id%>/new" method="POST" enctype="multipart/form-data">
-    <label for="text">Title: </label>
-    <input type="text" id="title" name="title">
-    <br><br>
-    <label for="file">File: </label>
-    <input type="file" id="file" name="file" required>
-    <br><br>
-    <label for="text">Release Version: </label>
-    <input type="text" id="releaseVersion" name="releaseVersion">
-    <br><br>
-    <label for="text">Description: </label>
-    <textarea type="text" id="file-input" name="description"></textarea>
-    <br>
-    <label for="date">Upload Date: </label>
-    <input type="date" id="createdAt" name="createdAt">
-    <br><br>
-    <button type="submit">Add Release Note</button>
-</form>
+                    <div class="text-center mb-3 fw-bolder">
+                        <% if (locals.error != null) {%> 
+                            <%= error %> 
+                        <% } %>
+                    </div>
+  
+                    <!-- Submit Button-->
+                    <div class="d-grid"><button class="btn btn-primary btn-xl" id="submitButton" type="submit">Add Release Note</button></div><br>
 
-<a href="/rel/<%=project.id%>">Cancel</a>
+                    <div class="text-center mb-3 fw-bolder ">
+                        <p>Have a Problem? <a href="/rel/<%=project.id%>">Cancel</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> 
+</section>
 
 <script>
     var simplemde = new SimpleMDE({ element: document.getElementById("file-input") });

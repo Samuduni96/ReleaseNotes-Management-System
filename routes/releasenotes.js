@@ -18,7 +18,9 @@ router.get('/rel/:id', async (req, res) => {
 
 router.get('/rel/:id/new', async (req, res) => {
     const project =  await Project.findById(req.params.id)
-    res.render('releasenotes/new', {project: project})
+    res.render('releasenotes/new', {
+        project: project
+    })
 })
 
 router.post('/rel/:id/new', upload.single('file'), async (req, res) => {

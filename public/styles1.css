@@ -682,6 +682,7 @@ progress {
   padding-right: calc(var(--bs-gutter-x) * 0.5);
   padding-left: calc(var(--bs-gutter-x) * 0.5);
   margin-top: var(--bs-gutter-y);
+  margin-bottom: var(--bs-gutter-y);
 }
 
 .col {
@@ -2186,13 +2187,23 @@ progress {
   color: #6c757d;
 }
 
+.CodeMirror-scroll {
+  overflow: scroll!important;
+  margin-bottom: -30px;
+  margin-right: -30px;
+  padding-bottom: 30px;
+  height: 10% !important;
+  outline: 0;
+  position: relative
+}
+
 .form-control {
   display: block;
   width: 100%;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 2.6;
   color: #212529;
   background-color: #fff;
   background-clip: padding-box;
@@ -11299,7 +11310,8 @@ body {
 }
 
 .page-section {
-  padding: 8rem 0;
+  padding: 7rem 0;
+  padding-bottom: 4rem;
 }
 
 .text-white-75 {

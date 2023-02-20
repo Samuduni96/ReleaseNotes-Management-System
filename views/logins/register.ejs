@@ -4,7 +4,7 @@
     <link href="styles1.css" rel="stylesheet" />
 </head>
 
-<!-- Login-->
+<!-- Register-->
 <section class="page-section" id="contact">
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -40,14 +40,16 @@
                         <% if (locals.errorMessage != null) { %>
                           <%= errorMessage %>
                         <% } %>
-                      </div>
+                    </div>
   
                     <!-- Submit Button-->
-                    <div class="d-grid"><button class="btn btn-primary btn-xl" id="submitButton" type="submit">Sign In</button></div><br>
+                    <div class="d-grid"><button class="btn btn-primary btn-xl" id="submitButton" type="submit">Sign Up</button></div><br>
 
                     <div class="text-center mb-3 fw-bolder ">
-                    <p>Welcome Back! <a href="/login">Sign In</a></p>
+                        <p>Welcome Back! <a href="/login">Sign In</a></p>
                     </div>
                 </form>
-            </div> 
-  </section>
+            </div>
+        </div>
+    </div> 
+</section>

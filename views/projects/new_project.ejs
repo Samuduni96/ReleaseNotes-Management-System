@@ -1,25 +1,42 @@
 <%- include('../layouts/header.ejs') %> 
-<br>
 
-<% if (locals.errorMessage != null) {%> 
-    <%= errorMessage %> 
-<% } %> 
+        
+<section class="page-section">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-8 col-xl-6 text-center">
+                <h2 class="mt-0">Add New Project</h2>
+                <hr class="divider" />
+            </div>
+        </div>
+        <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+            <div class="col-lg-6">
+        
+                <form action="/new_project" method="POST" >
+                    <!-- Project name input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="name" name="name" type="text" placeholder="Enter project name..." value="<%= project.name %>" />
+                        <label for="name">Project name</label>
+                    </div>
+                    <!-- Description input-->
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control h-25" id="description" name="description" type="description" placeholder="Description" cols="30" rows="30" ></textarea>
+                        <label for="description">Description</label>
+                    </div>
 
-<h2>Add New Project</h2>
+                    <div class="text-center mb-3 fw-bolder">
+                        <% if (locals.errorMessage != null) {%> 
+                            <%= errorMessage %> 
+                        <% } %> 
+                      </div>
+  
+                    <!-- Submit Button-->
+                    <div class="d-grid"><button class="btn btn-primary btn-xl" id="submitButton" type="submit">Create</button></div><br>
 
-<form action="/new_project" method="POST">
-    <div>
-        <label>Project Name: </label>
-        <input type="text" name="name" value="<%= project.name %>">
-    </div>
-    <br>
-    
-    <div>
-        <label>Description: </label>
-        <textarea type="description" name="description" cols="30" rows="10"></textarea>
-    </div>
-
-    <a href="/home">Cancel</a>
-    <button type="submit">Create</button>
-</form>
+                    <div class="text-center mb-3 fw-bolder ">
+                    <p>Have a Problem? <a href="/home">Cancel</a></p>
+                    </div>
+                </form>
+            </div> 
+  </section>
 

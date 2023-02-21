@@ -34,14 +34,15 @@ router.post('/rel/:id/new', upload.single('file'), async (req, res) => {
         description: req.body.description,
         createdAt: req.body.createdAt,
     }
+    console.log(releasenoteData);
     try {
         const releasenote = await ReleaseNote.create(releasenoteData)
         res.redirect(`/rel/${releasenoteData.project.id}`)
-    } catch {
+    } catch {     
         if (releasenoteData.path != null) {
             removeFile(releasenoteData.path)
-            res.redirect(`/rel/${releasenoteData.project.id}/new`)       
-        }       
+            res.redirect(`/rel/${releasenoteData.project.id}/new`)   
+        } 
     }
 })
 

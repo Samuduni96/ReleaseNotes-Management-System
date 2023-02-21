@@ -21,17 +21,17 @@
                 <form action="/rel/<%=project.id%>/new" method="POST" enctype="multipart/form-data" >
                     <!-- Title input-->
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="title" name="title" type="text" placeholder="Enter the title..." />
+                        <input class="form-control" id="title" name="title" type="text" placeholder="Enter the title..." required />
                         <label for="text">Title</label>
                     </div>
                     <!-- File input-->
                     <div class="mb-3">
-                        <input class="form-control" id="file" name="file" type="file" placeholder="File"  />
+                        <input class="form-control" id="file" name="file" type="file" placeholder="File" required />
                         <label class="form-label" for="file"></label>
                     </div>
                     <!-- Release Version-->
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="releaseVersion" type="text" name="releaseVersion" placeholder="Release Version" />
+                        <input class="form-control" id="releaseVersion" type="text" name="releaseVersion" placeholder="Release Version" required />
                         <label for="text">Release Version</label>
                     </div>
                     <!-- Uploaded Date-->

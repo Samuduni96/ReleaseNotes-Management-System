@@ -1,11 +1,12 @@
 <%- include('../layouts/header') %> 
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
 </head>
 
-
+<body>
 <section class="page-section" id="contact">
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -40,7 +41,7 @@
                     </div>
                     <!-- Description input-->
                     <div class="mb-3">
-                        <textarea class="form-control h-25" id="file-input" name="description" type="text" placeholder="Description"></textarea>
+                        <textarea class="form-control h-25" id="description" name="description"></textarea>
                         <label for="text"></label>
                     </div>
 
@@ -63,9 +64,9 @@
 </section>
 
 <script>
-    var simplemde = new SimpleMDE({ element: document.getElementById("file-input") });
+    CKEDITOR.replace('description')
 </script>
-
+</body>
 
 
 

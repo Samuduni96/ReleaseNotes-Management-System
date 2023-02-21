@@ -1,35 +1,44 @@
 <%- include('../layouts/header') %> 
-<br><br><br><br>
-<!-- <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
-</head> -->
 
-<form action="/rel/<%=project.id%>" method="GET">
-    <h2>Release Notes of <%= project.name %> </h2>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link href="/styles2.css" rel="stylesheet">
+</head>
 
-    <a href="/rel/<%=project.id%>/new">Add New Release Note</a>
-    <br><br>
-
-    <% releasenotes.forEach( releasenote => { %>
-        <div><%= releasenote.title %>
-            <br>
-            <%= releasenote.releaseVersion %>
-            <br>
-            <script id="file-input">
-                simplemde.value()
-            </script>
-            <div>
-                <%= releasenote.description %>
+<body>
+    <form action="/rel/<%=project.id%>" method="GET"></form>
+    <section class="page-section">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-lg-8 col-xl-6 text-center">
+                    <h2 class="mt-0">Release Notes of <%= project.name %></h2>
+                    <hr class="divider" />
+                </div>
             </div>
-            <%= releasenote.CreatedAt.toISOString().split('T')[0] %>
-            <br>
-            <a href="/rel/<%=project.id%>/<%=releasenote.id%>">Download</a>
-            <br><br>
         </div>
-    <% }) %>
-</form>
 
-<!-- <script>
-    var simplemde = new SimpleMDE({ element: document.getElementById("file-input") });
-</script> -->
+        <div class="form-row text-center">
+            <div class="col-12">
+              <a href="/rel/<%=project.id%>/new" class="btn btn-primary">Add New Release Note</a>
+            </div>
+          </div>
+</section>
+
+<section id="services" class="services container">
+            
+    <div class="row gy-4">
+        <% releasenotes.forEach( releasenote => { %>
+        <div class="col-md-6-user" data-aos="fade-up" data-aos-delay="300">
+        <div class="service-box service-box-left orange">
+          <h3><%= releasenote.title %></h3>
+          <p><%= releasenote.releaseVersion %></p>
+          <p><%= releasenote.CreatedAt.toISOString().split('T')[0] %></p>
+          <p><%- releasenote.description %></p>
+          <a href="/userprofile/<%=releasenote.id%>" class="read-more"><span>Download</span></a><br>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+</section>
+</body>
+

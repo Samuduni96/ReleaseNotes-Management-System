@@ -7,6 +7,7 @@ const ReleaseNote = new mongoose.Schema({
         required: true
     },
     description: String,
+    snippet:String,
     CreatedAt: {
         type: Date,
         default: Date.now

@@ -29,6 +29,10 @@
     border-radius: 5px;
   }
   
+  .services .service-box-left {
+    text-align: left;
+  }
+
   .services .service-box .icon {
     font-size: 36px;
     padding: 20px 20px;
@@ -78,20 +82,20 @@
   }
   
   .services .service-box.orange {
-    border-bottom: 3px solid #f68c09;
+    border-bottom: 3px solid #111010;
   }
   
   .services .service-box.orange .icon {
-    color: #f68c09;
-    background: #fde3c4;
+    color: #757575;
+    background: #e0e0e0;
   }
   
   .services .service-box.orange .read-more {
-    color: #f68c09;
+    color: #757575;
   }
   
   .services .service-box.orange:hover {
-    background: #f68c09;
+    background: #9e9e9e;
   }
   
   .services .service-box.green {

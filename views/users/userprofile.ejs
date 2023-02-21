@@ -1,21 +1,38 @@
 <%- include('../layouts/header') %>
 
-<h2>Welcome to your profile <%= user.username %> </h2>
+<head>
+    <link href="/styles2.css" rel="stylesheet">
+</head>
 
-<h3> Releasenotes added: </h3>
+<body>
+    <section class="page-section">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-lg-8 col-xl-6 text-center">
+                    <h2 class="mt-0">Welcome to your profile <%= user.username %></h2>
+                    <hr class="divider" />
+                </div>
+            </div>
+        </div>
+</section>
 
-<% releasenotes.forEach( releasenote => { %>
-    <div><%= releasenote.title %>
-        <br>
-        <%= releasenote.releaseVersion %>
-        <br>
-        <%= releasenote.description %>
-        <br>
-        <%= releasenote.CreatedAt.toISOString().split('T')[0] %>
-        <br>
-        <a href="/userprofile/<%=releasenote.id%>">Download</a>
-        <br>
-        <%- include('../layouts/delete', { url: `/userprofile/${releasenote.id}` }) %>
-        <br><br>
-    </div>
-<% }) %>
+<!-- <h3> Releasenotes added: </h3> -->
+
+<section id="services" class="services container">
+            
+      <div class="row gy-4">
+        <% releasenotes.forEach( releasenote => { %>
+        <div class="col-md-6-user" data-aos="fade-up" data-aos-delay="300">
+          <div class="service-box service-box-left orange">
+            <h3><%= releasenote.title %></h3>
+            <p><%= releasenote.releaseVersion %></p>
+            <p><%= releasenote.CreatedAt.toISOString().split('T')[0] %></p>
+            <p><%- releasenote.description %></p>
+            <a href="/userprofile/<%=releasenote.id%>" class="read-more"><span>Download</span></a><br>
+            <%- include('../layouts/delete', { url: `/userprofile/${releasenote.id}` }) %>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+</section>
+</body>

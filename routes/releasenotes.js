@@ -24,23 +24,24 @@ router.get('/rel/:id/new', async (req, res) => {
 })
 
 router.post('/rel/:id/new', upload.single('file'), async (req, res) => {
+    const filePath = req.file != null ? req.file.path: null
+    const fileOrgName = req.file != null ? req.file.originalname: null
     const releasenoteData = {
         user : await req.user._id,
         project: await Project.findById(req.params.id),
         title: req.body.title,
-        path: req.file.path,
-        originalName: req.file.originalname,
+        path: filePath,
+        originalName: fileOrgName,
         releaseVersion: req.body.releaseVersion,
         description: req.body.description,
         createdAt: req.body.createdAt,
     }
-    console.log(releasenoteData);
     try {
         const releasenote = await ReleaseNote.create(releasenoteData)
         res.redirect(`/rel/${releasenoteData.project.id}`)
     } catch {     
-        if (releasenoteData.path != null) {
-            removeFile(releasenoteData.path)
+        if (releasenoteData.path != null) {         // not needed
+            removeFile(releasenoteData.path)        
             res.redirect(`/rel/${releasenoteData.project.id}/new`)   
         } 
     }
@@ -57,7 +58,9 @@ router.delete('/userprofile/:id', async (req, res) => {
     try {
         releasenotes = await ReleaseNote.findById(req.params.id)
         await releasenotes.remove()
-        removeFile(releasenotes.path)
+        if (releasenotes.path != null) {
+            removeFile(releasenotes.path)
+        }
         res.redirect('/userprofile')
     } catch {
         res.redirect ('/home')

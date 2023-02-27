@@ -26,7 +26,7 @@
                     </div>
                     <!-- File input-->
                     <div class="mb-3">
-                        <input class="form-control" id="file" name="file" type="file" placeholder="File" required />
+                        <input class="form-control" id="file" name="file" type="file" placeholder="File" />
                         <label class="form-label" for="file"></label>
                     </div>
                     <!-- Release Version-->
@@ -52,10 +52,10 @@
                     </div>
   
                     <!-- Submit Button-->
-                    <div class="d-grid"><button class="btn btn-primary btn-xl" id="submitButton" type="submit">Add Release Note</button></div><br>
+                    <div class="d-grid"><button class="btn btn-primary btn-xl" id="submitButton" type="submit">Save</button></div><br>
 
                     <div class="text-center mb-3 fw-bolder ">
-                        <p>Have a Problem? <a href="/rel/<%=project.id%>">Cancel</a></p>
+                        <a href="/rel/<%=project.id%>">Cancel</a>
                     </div>
                 </form>
             </div>

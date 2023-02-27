@@ -3,8 +3,8 @@ const passport = require('passport')
 const bodyParser = require('body-parser')
 const LocalStrategy = require("passport-local")
 const flash = require("connect-flash")
-// const methodOverride = require('method-override')
-// const passportLocalMongoose = require("passport-local-mongoose") 
+const methodOverride = require('method-override')
+const passportLocalMongoose = require("passport-local-mongoose") 
 const router = express.Router()
 const User = require("../models/user")
 
@@ -49,15 +49,15 @@ router.post('/login', passport.authenticate('local', {
     
 })
 
-router.post("/register",(req,res)=>{
+router.post("/register", (req, res) => {
     User.register(new User({
         username: req.body.username,
-        email:req.body.email
+        email: req.body.email
     }),
     req.body.password,function(err,user){
         if(err){
             console.log(err);
-            res.render("logins/register", {errorMessage: 'Fill in all the fields before submiting'})
+            res.render("logins/register", {errorMessage: 'Something wrong with creating the account'})
         }
         passport.authenticate("local")(req,res,function(){
             res.redirect("/login")

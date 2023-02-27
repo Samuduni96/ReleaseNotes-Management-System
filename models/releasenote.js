@@ -13,11 +13,11 @@ const ReleaseNote = new mongoose.Schema({
     },
     path: {
         type: String,
-        required: true
+        required: false
     },
     originalName: {
         type: String,
-        required: true
+        required: false
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,

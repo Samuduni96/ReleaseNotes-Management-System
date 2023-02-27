@@ -34,7 +34,9 @@
           <p><%= releasenote.releaseVersion %></p>
           <p><%= releasenote.CreatedAt.toISOString().split('T')[0] %></p>
           <p><%- releasenote.description %></p>
-          <a href="/userprofile/<%=releasenote.id%>" class="read-more"><span>Download</span></a><br>
+          <% if (releasenote.path != null) { %>
+            <a href="/userprofile/<%=releasenote.id%>" class="read-more"><span>Download</span></a><br>
+          <% } %>
         </div>
       </div>
       <% }) %>

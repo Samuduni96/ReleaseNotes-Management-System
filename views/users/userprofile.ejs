@@ -25,12 +25,11 @@
         <div class="col-md-6-user" data-aos="fade-up" data-aos-delay="300">
           <div class="service-box service-box-left orange">
             <h3><%= releasenote.title %></h3>
-            <p><%= releasenote.releaseVersion %></p>
-            <p><%= releasenote.CreatedAt.toISOString().split('T')[0] %></p>
-            <p><%- releasenote.description %></p>
             <% if (releasenote.path != null) { %>
               <a href="/userprofile/<%=releasenote.id%>" class="read-more"><span>Download</span></a><br>
             <% } %>
+            <a href="/userprofile/<%=releasenote.id%>/view">View</a><br>
+            <a href="/userprofile/<%=releasenote.id%>/edit">Edit</a>
             <%- include('../layouts/delete', { url: `/userprofile/${releasenote.id}` }) %>
           </div>
         </div>

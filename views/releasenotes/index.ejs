@@ -31,12 +31,12 @@
         <div class="col-md-6-user" data-aos="fade-up" data-aos-delay="300">
         <div class="service-box service-box-left orange">
           <h3><%= releasenote.title %></h3>
-          <p><%= releasenote.releaseVersion %></p>
-          <p><%= releasenote.CreatedAt.toISOString().split('T')[0] %></p>
-          <p><%- releasenote.description %></p>
           <% if (releasenote.path != null) { %>
             <a href="/userprofile/<%=releasenote.id%>" class="read-more"><span>Download</span></a><br>
           <% } %>
+          <a href="/rel/<%=project.id%>/<%=releasenote.id%>">View</a><br>
+          <a href="/rel/<%=project.id%>/<%=releasenote.id%>/edit">Edit</a><br>
+          <a href="/rel/<%=project.id%>/<%=releasenote.id%>/copy">Copy</a>
         </div>
       </div>
       <% }) %>

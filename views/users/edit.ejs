@@ -2,8 +2,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
     <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
 </head>
@@ -13,17 +11,17 @@
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-lg-8 col-xl-6 text-center">
-                <h2 class="mt-0">Add New Release Note</h2>
+                <h2 class="mt-0">Edit Release Note</h2>
                 <hr class="divider" />
             </div>
         </div>
         <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
             <div class="col-lg-6">
         
-                <form action="/rel/<%=project.id%>/new" method="POST" enctype="multipart/form-data" >
+                <form action="/userprofile/<%=releasenote.id%>?_method=PUT" method="POST" enctype="multipart/form-data">
                     <!-- Title input-->
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="title" name="title" type="text" placeholder="Enter the title..." required />
+                        <input class="form-control" id="title" name="title" type="text" value="<%=releasenote.title%>" />
                         <label for="text">Title</label>
                     </div>
                     <!-- File input-->
@@ -33,31 +31,31 @@
                     </div>
                     <!-- Release Version-->
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="releaseVersion" type="text" name="releaseVersion" placeholder="Release Version" required />
+                        <input class="form-control" id="releaseVersion" type="text" name="releaseVersion" value="<%=releasenote.releaseVersion%>" />
                         <label for="text">Release Version</label>
                     </div>
                     <!-- Uploaded Date-->
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="createdAt" type="date" name="createdAt" />
+                        <input class="form-control" id="createdAt" type="date" name="createdAt"/>
                         <label for="date">Upload Date</label>
                     </div>
                     <!-- Description input-->
                     <div class="mb-3">
-                        <textarea class="form-control h-25" id="description" name="description"></textarea>
+                        <textarea class="form-control h-25" id="description" type="text" name="description"></textarea>
                         <label for="text"></label>
                     </div>
 
                     <div class="text-center mb-3 fw-bolder">
-                        <% if (locals.error != null) {%> 
+                        <% if (locals.error != null) { %> 
                             <%= error %> 
                         <% } %>
                     </div>
   
                     <!-- Submit Button-->
-                    <div class="d-grid"><button class="btn btn-primary btn-xl" id="submitButton" type="submit">Save</button></div><br>
+                    <div class="d-grid"><button class="btn btn-primary btn-xl" id="submitButton" type="submit">Update</button></div><br>
 
                     <div class="text-center mb-3 fw-bolder ">
-                        <a href="/rel/<%=project.id%>">Cancel</a>
+                        <a href="/userprofile">Cancel</a>
                     </div>
                 </form>
             </div>
@@ -65,10 +63,12 @@
     </div> 
 </section>
 
-<script>
+<script>    
     CKEDITOR.replace('description')
+    CKEDITOR.instances.description.setData(`<%-releasenote.description%>`);
 </script>
 
 </body>
+
 
 

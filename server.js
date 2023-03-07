@@ -11,7 +11,6 @@ const path = require('path')
 
 const indexRouter = require('./routes/index')
 const projectRouter = require('./routes/projects')
-//const userRouter = require('./routes/users')
 const releasenoteRouter = require('./routes/releasenotes')
 
 app.use(express.static(__dirname + '/public'))
@@ -21,7 +20,6 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: false}))
 
 app.use('/', indexRouter)
 app.use('/', projectRouter)
-//app.use('/', userRouter)
 app.use('/', releasenoteRouter)
 
 const mongoose = require('mongoose')

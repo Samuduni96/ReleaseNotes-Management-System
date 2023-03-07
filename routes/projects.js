@@ -1,8 +1,9 @@
 const express = require('express')
+const multer = require('multer')
 const router = express.Router()
 const Project = require('../models/project')
 const ReleaseNote = require('../models/releasenote')
-
+const upload = multer({ dest: 'uploads' })
 
 // Show All Projects Route
 router.get('/home', chechAuthenticated, async (req, res) => {
@@ -40,6 +41,47 @@ router.post('/new_project', async (req, res) => {
             project: project,
             errorMessage: 'Error Creating the Project'
         })
+    }
+})
+
+router.get('/userprofile/:r_id/view', async (req, res) => {
+    const releasenote = await ReleaseNote.findById(req.params.r_id)
+    res.render('users/show', {releasenote: releasenote})
+})
+
+router.get('/userprofile/:r_id/edit', async (req, res) => {
+    try {
+        const releasenote = await ReleaseNote.findById(req.params.r_id)
+        res.render('users/edit', { releasenote: releasenote })
+    } catch {
+        res.redirect('/userprofile')
+    }
+})
+
+router.put('/userprofile/:r_id', upload.single('file'), async (req, res) => {
+    const filePath = req.file != null ? req.file.path: null
+    const fileOrgName = req.file != null ? req.file.originalname: null
+    let releasenote
+    try {
+        releasenote = await ReleaseNote.findById(req.params.r_id)
+        releasenote.user = await req.user.id,
+        releasenote.title = req.body.title,
+        releasenote.path = filePath,
+        releasenote.originalName = fileOrgName,
+        releasenote.releaseVersion = req.body.releaseVersion,
+        releasenote.description = req.body.description,
+        releasenote.createdAt = req.body.createdAt
+        await releasenote.save()
+        res.redirect(`/userprofile/${releasenote.id}/view`)
+    } catch {
+        if (releasenote == null){
+            res.redirect('/userprofile')
+        } else {
+            res.render('users/edit', { 
+                releasenote: releasenote,
+                error: 'Error Updating Releasenote'  
+            })
+        }
     }
 })
 

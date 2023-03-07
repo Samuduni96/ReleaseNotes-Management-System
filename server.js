@@ -14,6 +14,7 @@ const projectRouter = require('./routes/projects')
 const releasenoteRouter = require('./routes/releasenotes')
 
 app.use(express.static(__dirname + '/public'))
+app.use(express.static(__dirname + '/public/project_logo'))
 app.set('view engine', 'ejs')
 app.use(methodOverride('_method'))
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false}))

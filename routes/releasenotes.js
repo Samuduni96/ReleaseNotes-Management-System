@@ -12,7 +12,7 @@ const upload = multer({ dest: 'uploads' })
 
 router.get('/rel/:id', async (req, res) => {
     const project =  await Project.findById(req.params.id)
-    const releasenotes = await ReleaseNote.find({ project: project })
+    const releasenotes = await ReleaseNote.find({ project: project }).sort({ CreatedAt: 'desc' })
     res.render('releasenotes/index', {releasenotes: releasenotes, project: project})
 })
 

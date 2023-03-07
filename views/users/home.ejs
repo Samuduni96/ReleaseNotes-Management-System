@@ -32,7 +32,8 @@
             <% projects.forEach( project=> { %>
             <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
               <div class="service-box orange">
-                <i class="bi bi-chat-left-heart-fill icon"></i>
+                <!-- <i class="bi bi-chat-left-heart-fill icon"></i> -->
+                <img src="/<%= project.imgLogo %>">
                 <h3><%= project.name %></h3>
                 <p><%= project.description %></p>
                 <a href="/rel/<%= project.id %>" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>

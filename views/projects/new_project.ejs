@@ -12,7 +12,7 @@
         <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
             <div class="col-lg-6">
         
-                <form action="/new_project" method="POST" >
+                <form action="/new_project" method="POST" enctype="multipart/form-data">
                     <!-- Project name input-->
                     <div class="form-floating mb-3">
                         <input class="form-control" id="name" name="name" type="text" placeholder="Enter project name..." value="<%= project.name %>" />
@@ -22,6 +22,11 @@
                     <div class="form-floating mb-3">
                         <textarea class="form-control h-25" id="description" name="description" type="description" placeholder="Description" cols="30" rows="30" ></textarea>
                         <label for="description">Description</label>
+                    </div>
+                    <!-- Logo input-->
+                    <div class="mb-3 input-group custom-file-button">
+                        <input class="form-control" id="imgLogo" name="imgLogo" type="file" placeholder="Add Logo"/>
+                        <label class="input-group-text" for="imgLogo">Add Logo</label>
                     </div>
 
                     <div class="text-center mb-3 fw-bolder">
@@ -34,7 +39,7 @@
                     <div class="d-grid"><button class="btn btn-primary btn-xl" id="submitButton" type="submit">Create</button></div><br>
 
                     <div class="text-center mb-3 fw-bolder ">
-                    <p>Have a Problem? <a href="/home">Cancel</a></p>
+                    <a href="/home">Cancel</a>
                     </div>
                 </form>
             </div> 

@@ -3,7 +3,7 @@ const multer = require('multer')
 const router = express.Router()
 const Project = require('../models/project')
 const ReleaseNote = require('../models/releasenote')
-const imageMimeTypes = ['image/jpeg', 'image/png', 'image/jpg']
+const imageMimeTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp']
 const upload = multer({ dest: 'uploads' })
 const upload_logo = multer({ 
     dest: 'public/project_logo',

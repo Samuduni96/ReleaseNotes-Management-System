@@ -29,4 +29,12 @@ The Release Note Management System is built using the following technologies:
 * Bootstrap
 
 # Screen Shots
-<img src="/public/assests/1.jpeg" width="250px">
+<div style="display: flex>
+<img src="/public/assests/1.jpeg" width="300px">
+<img src="/public/assests/2.jpeg" width="300px">
+<img src="/public/assests/3.jpeg" width="300px">
+<img src="/public/assests/4.jpeg" width="300px">
+<img src="/public/assests/5.jpeg" width="300px">
+<img src="/public/assests/6.jpeg" width="300px">
+<img src="/public/assests/7.jpeg" width="300px">
+</div>

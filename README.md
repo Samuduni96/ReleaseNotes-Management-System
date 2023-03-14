@@ -27,3 +27,6 @@ The Release Note Management System is built using the following technologies:
 * Express
 * MongoDB
 * Bootstrap
+
+# Screen Shots
+<img src="/public/assests/1.jpeg" width="250px">
